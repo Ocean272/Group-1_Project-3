@@ -12,7 +12,6 @@ module.exports = {
 
     //Look for the restaurant and in the database.
     const newLocation = await Location.create({
-        locationId: locationId,
         name: name,
         address: address,
         located_at: located_at,
@@ -20,7 +19,6 @@ module.exports = {
         priceId: priceId,
         openingHour: openingHour,
         image: image,
-        
       });
 
     await newLocation.save(); // update the location

@@ -1,14 +1,14 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize('dbheroku', 'postgres', 'mypassword', {
-    host: 'mydatabase-1.ctgdayi97uhz.ap-southeast-1.rds.amazonaws.com',
+const sequelize = new Sequelize('dbrestaurant', 'postgres', 'postgres', {
+    host: 'localhost',
     dialect: 'postgres',
-    dialectOptions:{
-      ssl: {
-        required: true,
-        rejectUnauthorized: false
-      }
-    }
+    // dialectOptions:{
+    //   ssl: {
+    //     required: true,
+    //     rejectUnauthorized: false
+    //   }
+    // }
   }
 );
 
@@ -28,7 +28,7 @@ Location.belongsToMany(User, { through: 'favorite' });
 
 
 module.exports = {
-  sequelize,
+  // sequelize,
   Location,
   Review,
   User,

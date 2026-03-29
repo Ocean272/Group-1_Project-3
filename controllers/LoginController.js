@@ -1,5 +1,4 @@
 const loginService = require("../services/login.service");
-const bcrypt = require("bcrypt");
 
 class LoginController {
   async create(req, res) {

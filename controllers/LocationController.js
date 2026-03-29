@@ -9,6 +9,8 @@ class LocationController {
       typeof name !== "string" ||
       typeof address !== "string" ||
       typeof located_at !== "string" ||
+      typeof cuisineId !== "string" ||
+      typeof priceId !== "string" ||
       typeof openingHour !== "string" ||
       typeof image !== "string"
     ) {
@@ -42,22 +44,20 @@ class LocationController {
       typeof openingHour !== "string" || 
       typeof image !== "string"
       ){
-      res.status(400);
-      
+      return res.status(400).send("Incorrect request data");
     }
-    
-      // Make sure the sequence is the same as in location.
-      const { status, data, message } = 
-      await locationService.create(
-      locationId,
-      name,
-      address,
-      located_at,
-      cuisineId,
-      priceId,
-      openingHour,
-      image
 
+    // Make sure the sequence is the same as in location.
+    const { status, data, message } = 
+      await locationService.create(
+        locationId,
+        name,
+        address,
+        located_at,
+        cuisineId,
+        priceId,
+        openingHour,
+        image
       );
     
     res.status(status);

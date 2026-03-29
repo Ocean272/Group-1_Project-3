@@ -1,13 +1,5 @@
-const chai = require('chai');
-const server = "https://witty-puce-boot.cyclic.app";
-const chaiHttp = require('chai-http');
-const { describe } = require('mocha');
-const expect = require("chai").expect;
-const request = require("supertest", "request");
-var should = chai.should();
-
-chai.use(chaiHttp);
-
+const request = require('supertest');
+const server = "http://localhost:3000";
 
 // *****************************  TEST LOCATIONS API  ********************************
 
