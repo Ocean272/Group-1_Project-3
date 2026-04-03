@@ -1,5 +1,5 @@
 const request = require('supertest');
-const server = "http://localhost:3000";
+const server = "http://localhost:5000";
 
 // *****************************  TEST LOCATIONS API  ********************************
 
@@ -11,7 +11,7 @@ describe("LOCATIONS", () => {
         .expect(200)
 
       const locations = res.body;
-        expect(locations).to.be.an('object');
+        expect(typeof locations).toBe('object');
     })
 
     it('should have all restaurant details', async () => {
@@ -20,16 +20,16 @@ describe("LOCATIONS", () => {
         .expect(200);
 
       const locations = res.body;
-      expect(locations).to.be.an('object');
+      expect(typeof locations).toBe('object');
 
       Array.from(locations).forEach(location => {
-        expect(location.name).to.be.a("string");
-        expect(location.address).to.be.a("string");
-        expect(location.located_at).to.be.a("string");
-        expect(location.cuisineId).to.be.a("string");
-        expect(location.priceId).to.be.a("string");
-        expect(location.openingHour).to.be.a("string");
-        expect(location.image).to.be.a("string");
+        expect(typeof location.name).toBe("string");
+        expect(typeof location.address).toBe("string");
+        expect(typeof location.located_at).toBe("string");
+        expect(typeof location.cuisineId).toBe("string");
+        expect(typeof location.priceId).toBe("string");
+        expect(typeof location.openingHour).toBe("string");
+        expect(typeof location.image).toBe("string");
       })
     })
 
@@ -40,16 +40,16 @@ describe("LOCATIONS", () => {
         .expect(200);
   
       const indRestaurants = res.body;
-      expect(indRestaurants).to.be.an('object');
+      expect(typeof indRestaurants).toBe('object');
   
       Array.from(indRestaurants).forEach(indRestaurant => {
-        expect(indRestaurant.name).to.be.a("string");
-        expect(indRestaurant.address).to.be.a("string");
-        expect(indRestaurant.located_at).to.be.a("string");
-        expect(indRestaurant.cuisineId).to.be.a("string");
-        expect(indRestaurant.priceId).to.be.a("string");
-        expect(indRestaurant.openingHour).to.be.a("string");
-        expect(indRestaurant.image).to.be.a("string");
+        expect(typeof indRestaurant.name).toBe("string");
+        expect(typeof indRestaurant.address).toBe("string");
+        expect(typeof indRestaurant.located_at).toBe("string");
+        expect(typeof indRestaurant.cuisineId).toBe("string");
+        expect(typeof indRestaurant.priceId).toBe("string");
+        expect(typeof indRestaurant.openingHour).toBe("string");
+        expect(typeof indRestaurant.image).toBe("string");
   
       })
     })
@@ -85,7 +85,7 @@ describe("LOCATIONS", () => {
   //         .send(myRestaurant)
   //         .end((err, res) => {
   //           res.should.have.status(200);
-  //           res.body.should.be.a("object");
+  //           res.body.shouldBetoBe.a("object");
   //           res.body.should.have
   //             .property("message")
   //             .eql("Update successful");
@@ -107,12 +107,12 @@ describe("USERS", () => {
         .expect(200);
 
       const users = res.body; 
-      expect(users).to.be.an('object');
+      expect(typeof users).toBe('object');
 
       Array.from(users).forEach(user => {
-        expect(user.username).to.be.a("string");
-        expect(user.email).to.be.a("string");
-        expect(user.password).to.be.a("string");
+        expect(typeof user.username).toBe("string");
+        expect(typeof user.email).toBe("string");
+        expect(typeof user.password).toBe("string");
           
       });
     });
@@ -130,7 +130,7 @@ describe("USERS", () => {
 //   //       .send(myNewuser)
 //   //       .end((err, res) => {
 //   //         res.should.have.status(200);
-//   //         res.body.should.be.a("object");
+//   //         res.body.shouldBetoBe.a("object");
 //   //         res.body.should.have
 //   //           .property("message")
 //   //           .eql("New user is created!");
@@ -171,7 +171,7 @@ describe("REVIEWS", () => {
         .expect(200)
 
       const reviews = res.body;
-        expect(reviews).to.be.an('object');
+        expect(typeof reviews).toBe('object');
     })
 
   // describe("/POST review", () => {
@@ -186,7 +186,7 @@ describe("REVIEWS", () => {
   //       .send(myreview)
   //       .end((err, res) => {
   //         res.should.have.status(200);
-  //         res.body.should.be.a("object");
+  //         res.body.shouldBetoBe.a("object");
   //         res.body.should.have
   //           .property("message")
   //           .eql("Update successful");
