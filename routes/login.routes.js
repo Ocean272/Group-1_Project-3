@@ -6,8 +6,8 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 const app = express();
 const cors = require("cors");
-const { Sequelize } = require("sequelize");
-const Op = Sequelize.Op;
+//const { Sequelize } = require("sequelize");
+//const Op = Sequelize.Op;
 const LoginController = require("../controllers/LoginController");
 
 const loginController = new LoginController();
@@ -72,5 +72,19 @@ router.post("/login/signin", async (req, res) => {
       res.status(500).send({ message: err.message });
     });
 });
+
+// router.post("/login/signin", async (req, res) => {
+//   const { username, password } = req.body;
+//     const user = await User.findOne({ where: { username } });
+//     if (!user) return res.status(404).json("User Not found.");
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) return res.status(400).json("Invalid Password!");
+
+//     const token = jwt.sign({ id: user.id }, config.secret, {
+//       expiresIn: 86400, // 24 hours
+//     });
+//     res.json({ token, user: { id: user._id, email: user.email } });
+// });
 
 module.exports = router;

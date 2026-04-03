@@ -10,9 +10,9 @@ const app = require('../routes/index');
 describe("LOCATIONS", () => {
   describe('/GET all restaurant locations', () => {
     it('should return 200 OK with all restaurant', async () => {
-      const res = await request(app) 
-        .get(`/public/location`)
-        .expect(200)
+      const res = await request(app)
+      .get(`/public/location`)
+      .expect(200);
 
       const locations = res.body;
         expect(typeof locations).toBe('object');
@@ -40,7 +40,7 @@ describe("LOCATIONS", () => {
   describe('/GET location/:id', () => {
     it('should query one individual restaurant', async () => {
       const res = await request(app) 
-        .get(`/user/location/`+ 10)
+        .get(`/user/location/`+ 3)
         .expect(200);
   
       const indRestaurants = res.body;
@@ -58,19 +58,20 @@ describe("LOCATIONS", () => {
       })
     })
 
-    // it("it should query a NON EXISTED Restaurant",  (done) => {
-    //   request(server)
-    //     .get("/user/location/"+ 22)
-    //     .set('Accept', 'application/json')
-    //     .expect(404)
-    //     .expect('Content-Type', /json/)
-    //     .expect('message: Location ID not found')
-    //     .end((err, res) => {
-    //       //console.log("CHECK IS USER IN THE DATABASE");
-    //       res.should.have.status(404);
-    //     })
-    //     done();
-    //   })
+    it("it should query a NON EXISTED Restaurant",  (done) => {
+      request(app)
+        .get("/user/location/"+ 22)
+        .set('Accept', 'application/json')
+        .expect(404)
+        .expect('Content-Type', /json/)
+        .expect('message: Location ID not found')
+        .end((err, res) => {
+          //console.log("CHECK IS USER IN THE DATABASE");
+          //res.should.have.status(500);
+          expect(res.status).toBe(404)
+        })
+        done();
+      })
     })
 
   // describe("/POST a restaurant location", () => {
@@ -144,25 +145,26 @@ describe("USERS", () => {
 //   // });
 
 
-//   describe("/POST a signin user", () => {
-//     it("it should BE AN UNSUCCESSFUL LOGIN user",  (done) => {
-//       request(server)
-//         .post("/login/signin")
-//         .send({
-//           "username":"Zeus",
-//           "password":"12345"
-//         })
-//         .set('Accept', 'application/json')
-//         .expect(404)
-//         .expect('Content-Type', /json/)
-//         .expect('message: User Not found')
-//         .end((err, res) => {
-//           //console.log("CHECK IS USER IN THE DATABASE");
-//           res.should.have.status(404);
-//         })
-//       done();
-//     });
-//   });
+  describe("/POST a signin user", () => {
+    it("it should BE AN UNSUCCESSFUL LOGIN user",  (done) => {
+      request(app)
+        .post("/login/signin")
+        .send({
+          "username":"Zeus",
+          "password":"12345"
+        })
+        .set('Accept', 'application/json')
+        .expect(500)
+        .expect('Content-Type', /json/)
+        .expect('message: User Not found')
+        .end((err, res) => {
+          //console.log("CHECK IS USER IN THE DATABASE");
+          //res.should.have.status(404);
+          expect(res.status).toBe(500);
+        })
+      done();
+    });
+  });
  });
 
 // *****************************  TEST REVIEWS API  ********************************

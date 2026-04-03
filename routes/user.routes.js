@@ -24,11 +24,19 @@ router.get(
       const results = await Location.findAll({
         where: { id: req.params.id }
       });
-      console.table(JSON.parse(JSON.stringify(results)));
-      return res.send(JSON.stringify(results));
-
-    } catch (err) {
+    
+      if (results.length === 0) {
         res.status(404).send("Location ID not found");
+
+      } else {
+        
+        console.table(JSON.parse(JSON.stringify(results)));
+        return res.send(JSON.stringify(results));
+      }
+    
+    } catch (err) { 
+        
+        console.error(err.message);
     } 
   } 
 );
