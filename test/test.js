@@ -1,12 +1,14 @@
 const request = require('supertest');
-const server = "http://localhost:5000";
+//const server = "http://localhost:5000";
+const app = require('../routes/index');
 
+//Jest.setTimeout(30000); // Set timeout to 30 seconds
 // *****************************  TEST LOCATIONS API  ********************************
 
 describe("LOCATIONS", () => {
   describe('/GET all restaurant locations', () => {
     it('should return 200 OK with all restaurant', async () => {
-      const res = await request(`${server}`) 
+      const res = await request(app) 
         .get(`/public/location`)
         .expect(200)
 
@@ -15,7 +17,7 @@ describe("LOCATIONS", () => {
     })
 
     it('should have all restaurant details', async () => {
-      const res = await request(`${server}`) 
+      const res = await request(app) 
         .get(`/public/location`)
         .expect(200);
 
@@ -35,7 +37,7 @@ describe("LOCATIONS", () => {
 
   describe('/GET location/:id', () => {
     it('should query one individual restaurant', async () => {
-      const res = await request(`${server}`) 
+      const res = await request(app) 
         .get(`/user/location/`+ 10)
         .expect(200);
   
@@ -102,7 +104,7 @@ describe("LOCATIONS", () => {
 describe("USERS", () => {
   describe('/GET all user content', () => {
     it("should list all users", async () => {
-      const res = await request(`${server}`)
+      const res = await request(app)
         .get(`/login/user`) 
         .expect(200);
 
@@ -166,7 +168,7 @@ describe("USERS", () => {
 describe("REVIEWS", () => {
   describe('/GET all reviews', () => {
     it('should list all review contents', async () => {
-      const res = await request(`${server}`) 
+      const res = await request(app) 
         .get(`/public/review`)
         .expect(200)
 
