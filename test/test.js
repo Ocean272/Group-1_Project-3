@@ -1,6 +1,8 @@
+
 const request = require('supertest');
 //const server = "http://localhost:5000";
 const app = require('../routes/index');
+
 
 //Jest.setTimeout(30000); // Set timeout to 30 seconds
 // *****************************  TEST LOCATIONS API  ********************************
